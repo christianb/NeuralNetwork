@@ -19,7 +19,43 @@ class NeuralNetwork:
 
         pass
 
-    def train(self):
+    def train(self, input_list, target_list):
+        # convert lists to 2d array
+        inputs = numpy.array(input_list, ndmin=2).T
+        targets = numpy.array(target_list, ndmin=2).T
+
+        # calculate signals into hidden layer: w_ih x inputs
+        # hidden_inputs = numpy.dot(self.w_ih, inputs)
+        # calculate the signals emerging from hidden layer
+        # hidden_outputs = self.activationFunction(hidden_inputs)
+        hidden_outputs = self.signal_output(self.w_ih, inputs)
+
+        # calculate signals into final output layer: w_ho x hiddenOutputs
+        # final_inputs = numpy.dot(self.w_ho, hidden_outputs)
+        # calculate the signals emerging from final output layer
+        # final_outputs = self.activationFunction(final_inputs)
+        final_outputs = self.signal_output(self.w_ho, hidden_outputs)
+
+        # output layer error is the (target - actual)
+        output_errors = targets - final_outputs
+        # hidden layer error is the output_errors, split by weights, recombined hidden nodes
+        hidden_errors = numpy.dot(self.w_ho.T, output_errors)
+
+        # update the weights for the links between the hidden  and output layers
+        self.w_ho += self.delta_weights(output_errors, final_outputs, hidden_outputs)
+        # update the weights for the links between the input and the hidden layers
+        self.w_ih += self.delta_weights(hidden_errors, hidden_outputs, inputs)
+
+        pass
+
+    # returns the ∂ W_jk
+    # outputs_j: output from layer j
+    # outputs_k: output from layer k
+    def delta_weights(self, errors, outputs_k, outputs_j):
+        return self.learningRate * numpy.dot(
+            (errors * outputs_k * (1.0 - outputs_k)),
+            numpy.transpose(outputs_j)
+        )
         pass
 
     def query(self, input_list):
@@ -27,18 +63,25 @@ class NeuralNetwork:
         inputs = numpy.array(input_list, ndmin=2).T
 
         # calculate signals into hidden layer: w_ih x inputs
-        hidden_inputs = numpy.dot(self.w_ih, inputs)
-
+        # hidden_inputs = numpy.dot(self.w_ih, inputs)
         # calculate the signals emerging from hidden layer
-        hidden_outputs = self.activationFunction(hidden_inputs)
+        # hidden_outputs = self.activationFunction(hidden_inputs)
+
+        hidden_outputs = self.signal_output(self.w_ih, inputs)
 
         # calculate signals into final output layer: w_ho x hiddenOutputs
-        final_inputs = numpy.dot(self.w_ho, hidden_outputs)
-
+        # final_inputs = numpy.dot(self.w_ho, hidden_outputs)
         # calculate the signals emerging from final output layer
-        final_outputs = self.activationFunction(final_inputs)
+        # final_outputs = self.activationFunction(final_inputs)
 
-        return final_outputs
+        return self.signal_output(self.w_ho, hidden_outputs)
+        pass
+
+    # Calculates: w_ik * inputs
+    # Applies the activation function to (w_ik * input)
+    def signal_output(self, w_ik, inputs):
+        signal_into_layer = numpy.dot(w_ik, inputs)  # calculate signals into layer: w_ik x inputs
+        return self.activationFunction(signal_into_layer)  # calculate the signals emerging from layer
         pass
 
     @staticmethod
@@ -69,3 +112,5 @@ class NeuralNetwork:
 
 n = NeuralNetwork(3, 3, 3, 0.3)
 n.print_weights()
+
+print(n.query([1.0, 0.5, -1.5]))
