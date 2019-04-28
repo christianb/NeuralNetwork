@@ -12,7 +12,13 @@ n = NeuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
 # train the neural network
 
+print("start training...")
+
+# small train set
 train_data_list = FileReader.read_file("data/mnist_train_100.csv")
+
+# uncomment and download full train data
+# train_data_list = FileReader.read_file("data/mnist_train.csv")
 
 for record in train_data_list:
     all_values = record.split(',')  # split the record by the ',' commas
@@ -28,21 +34,13 @@ for record in train_data_list:
 
 # test the neural network
 
+print("start testing...")
+
+# small data set
 test_data_list = FileReader.read_file("data/mnist_test_10.csv")
 
-# get the first test record
-# all_values = test_data_list[5].split(',')
-
-# print the label
-# print(all_values[0])
-
-# image_array = numpy.asfarray(all_values[1:]).reshape((28, 28))
-# matplotlib.pyplot.imshow(image_array, cmap='Greys', interpolation='None')
-# matplotlib.pyplot.title('Zeichen')
-# matplotlib.pyplot.show()
-
-# result = n.query((numpy.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01)
-# print(result)
+# uncomment and download full test data
+# test_data_list = FileReader.read_file("data/mnist_test.csv")
 
 scorecard = []
 
@@ -52,7 +50,7 @@ for record in test_data_list:
     all_values = record.split(',')  # split the record by the ',' commas
 
     correct_label = int(all_values[0])  # correct answer is the first label
-    print(correct_label, " is correct value")
+    # print(correct_label, " is correct value")
 
     # scale and shift the inputs
     inputs = (numpy.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
@@ -62,7 +60,7 @@ for record in test_data_list:
 
     # the index of the highest value corresponds to the label
     label = numpy.argmax(outputs)
-    print(label, " is networks answer")
+    # print(label, " is networks answer")
 
     # append correct or incorrect answer to list
     if label == correct_label:
@@ -73,7 +71,7 @@ for record in test_data_list:
 
     pass
 
-print(scorecard)
+# print(scorecard)
 
 # calculates the performance score, the fraction of correct answers
 scorecard_array = numpy.asarray(scorecard)
