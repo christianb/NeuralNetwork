@@ -3,8 +3,6 @@ import numpy
 # scipy.special for the sigmoid function expit()
 import scipy.special
 
-import matplotlib.pyplot
-
 
 class NeuralNetwork:
     def __init__(self, input_nodes, hidden_nodes, output_nodes, learning_rate):
@@ -112,48 +110,4 @@ class NeuralNetwork:
     pass
 
 
-input_nodes = 784
-hidden_nodes = 100
-output_nodes = 10
-
-learning_rate = 0.3
-
-n = NeuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
-
-train_data_file = open("data/mnist_train_100.csv", 'r')
-train_data_list = train_data_file.readlines()  # do not read whole files in memory!
-train_data_file.close()
-
-# train the neural network
-
-for record in train_data_list:
-    all_values = record.split(',')  # split the record by the ',' commas
-
-    inputs = (numpy.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01  # scale and shift he inputs
-
-    targets = numpy.zeros(output_nodes) + 0.01
-
-    targets[int(all_values[0])] = 0.99
-
-    n.train(inputs, targets)
-    pass
-
-# test the neural network 
-
-test_data_file = open("data/mnist_test_10.csv", 'r')
-test_data_list = test_data_file.readlines()  # do not read whole files in memory!
-test_data_file.close()
-
-# get the first test record
-all_values = test_data_list[5].split(',')
-
-# print the label
-print(all_values[0])
-
-# image_array = numpy.asfarray(all_values[1:]).reshape((28, 28))
-# matplotlib.pyplot.imshow(image_array, cmap='Greys', interpolation='None')
-# matplotlib.pyplot.title('Zeichen')
-# matplotlib.pyplot.show()
-
-result = n.query((numpy.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01)
-print(result)
+pass
