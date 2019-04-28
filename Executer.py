@@ -14,11 +14,9 @@ n = NeuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
 print("start training...")
 
-# small train set
-train_data_list = FileReader.read_file("data/mnist_train_100.csv")
-
-# uncomment and download full train data
-# train_data_list = FileReader.read_file("data/mnist_train.csv")
+optional_train_file_name = "data/mnist_train.csv"
+default_train_file_name = "data/mnist_train_100.csv"
+train_data_list = FileReader.read_optional_file_or_default(optional_train_file_name, default_train_file_name)
 
 for record in train_data_list:
     all_values = record.split(',')  # split the record by the ',' commas
@@ -36,11 +34,9 @@ for record in train_data_list:
 
 print("start testing...")
 
-# small data set
-test_data_list = FileReader.read_file("data/mnist_test_10.csv")
-
-# uncomment and download full test data
-# test_data_list = FileReader.read_file("data/mnist_test.csv")
+optional_test_file_name = "data/mnist_test.csv"
+default_test_file_name = "data/mnist_test_10.csv"
+test_data_list = FileReader.read_optional_file_or_default(optional_test_file_name, default_test_file_name)
 
 scorecard = []
 
