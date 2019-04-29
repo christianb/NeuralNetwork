@@ -16,3 +16,9 @@ The benchmark is configurable setting:
 
 ## Run
 To run the benchmark execute `python Benchmark.py`
+
+## Benchmark
+Best Performance:  0.9783
+ - learning rate:  0.05
+ - epoch:  10
+ - hidden nodes:  400

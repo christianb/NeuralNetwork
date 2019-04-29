@@ -1,5 +1,4 @@
 import numpy
-
 import FileReader
 from NeuralNetwork import NeuralNetwork
 
@@ -53,7 +52,6 @@ class Mnist:
             all_values = record.split(',')  # split the record by the ',' commas
 
             correct_label = int(all_values[0])  # correct answer is the first label
-            # print(correct_label, " is correct value")
 
             # scale and shift the inputs
             inputs = (numpy.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
