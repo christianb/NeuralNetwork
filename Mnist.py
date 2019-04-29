@@ -5,12 +5,12 @@ from NeuralNetwork import NeuralNetwork
 
 class Mnist:
     def __init__(self, hidden_nodes, learning_rate):
-        self.input_nodes = 784  # input data has 28 * 28 pixel
+        input_nodes = 784  # input data has 28 * 28 pixel
         self.output_nodes = 10  # output data are the numbers from 0..9
 
         self.train_data_list = Mnist.get_train_data_list()
         self.test_data_list = Mnist.get_test_data_list()
-        self.neural_network = NeuralNetwork(self.input_nodes, hidden_nodes, self.output_nodes, learning_rate)
+        self.neural_network = NeuralNetwork(input_nodes, hidden_nodes, self.output_nodes, learning_rate)
 
     pass
 
@@ -79,5 +79,12 @@ class Mnist:
 
     pass
 
+    def save_to_file(self):
+        self.neural_network.save_to_file()
+    pass
+
+    def load_from_file(self):
+        self.neural_network.load_from_file()
+    pass
 
 pass

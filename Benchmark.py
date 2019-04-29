@@ -58,5 +58,4 @@ print(" with learning rate: ", best_learning_rate)
 print(" with epoch: ", best_nr_of_epochs + 1, " (", epochs, ")")
 print(" with hidden nodes: ", best_hidden_nodes)
 
-
-print("time to run:", time.time() - timestamp, "ms")
+print("time to run:", time.time() - timestamp, "sec")

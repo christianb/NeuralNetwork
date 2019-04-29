@@ -19,6 +19,16 @@ class NeuralNetwork:
 
         pass
 
+    def save_to_file(self):
+        numpy.save("data/saved_w_ih.npy", self.w_ih)
+        numpy.save("data/saved_w_ho.npy", self.w_ho)
+    pass
+
+    def load_from_file(self):
+        self.w_ih = numpy.load("data/saved_w_ih.npy")
+        self.w_ho = numpy.load("data/saved_w_ho.npy")
+    pass
+
     def train(self, input_list, target_list):
         # convert lists to 2d array
         inputs = numpy.array(input_list, ndmin=2).T
