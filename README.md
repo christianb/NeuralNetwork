@@ -1,12 +1,14 @@
 # Neural Network
 Implementation of Tariq Rashid "Make Your Own Neural Network" using Python.
 
+To run the benchmark execute `python Benchmark.py`
+
 ## Mnist data
-This neural network works on train data from: http://www.pjreddie.com/media/files/mnist_train.csv
+To train the network you should download full train data 
+[http://www.pjreddie.com/media/files/mnist_train.csv](http://www.pjreddie.com/media/files/mnist_train.csv)
+and testing data [http://www.pjreddie.com/media/files/mnist_test.csv](http://www.pjreddie.com/media/files/mnist_test.csv)
 
-For testing you need to download: http://www.pjreddie.com/media/files/mnist_test.csv
-
-Add both files to the `/data` folder.
+Add both files to the `/data` folder or execute: `python download_mnist.py`
 
 ## Benchmark configuration
 The benchmark is configurable setting:
@@ -14,8 +16,7 @@ The benchmark is configurable setting:
 - list number of hidden nodes
 - list learning rate
 
-## Run
-To run the benchmark execute `python Benchmark.py`
+
 
 ## Benchmark
 Best Performance:  0.9783
