@@ -42,16 +42,9 @@ for h_nodes in hidden_nodes_list:
                 best_nr_of_epochs = e
                 best_learning_rate = lr
 
-                pass
-
             performance_list.append(performance)
             print("    performance = ", performance)
             print()
-
-        pass
-    pass
-
-pass
 
 print("Best Performance: ", best_performance)
 print(" with learning rate: ", best_learning_rate)
