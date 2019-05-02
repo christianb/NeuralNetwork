@@ -14,14 +14,6 @@ class NeuralNetwork:
         # activation function is the sigmoid function
         self.activationFunction = lambda x: scipy.special.expit(x)
 
-    def save_to_file(self):
-        numpy.save("data/saved_w_ih.npy", self.w_ih)
-        numpy.save("data/saved_w_ho.npy", self.w_ho)
-
-    def load_from_file(self):
-        self.w_ih = numpy.load("data/saved_w_ih.npy")
-        self.w_ho = numpy.load("data/saved_w_ho.npy")
-
     def train(self, input_list, target_list):
         # convert lists to 2d array
         inputs = numpy.array(input_list, ndmin=2).T
@@ -71,6 +63,14 @@ class NeuralNetwork:
     def signal_output(self, w_ik, inputs):
         signal_into_layer = numpy.dot(w_ik, inputs)  # calculate signals into layer: w_ik x inputs
         return self.activationFunction(signal_into_layer)  # calculate the signals emerging from layer
+
+    def save_to_file(self):
+        numpy.save("data/saved_w_ih.npy", self.w_ih)
+        numpy.save("data/saved_w_ho.npy", self.w_ho)
+
+    def load_from_file(self):
+        self.w_ih = numpy.load("data/saved_w_ih.npy")
+        self.w_ho = numpy.load("data/saved_w_ho.npy")
 
     @staticmethod
     def create_weight_simple(i, k):
