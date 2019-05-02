@@ -1,8 +1,6 @@
 # Neural Network
 Implementation of Tariq Rashid "Make Your Own Neural Network" using Python.
 
-To run the benchmark execute `python Benchmark.py`
-
 ## Mnist data
 To train the network you should download full train data 
 [http://www.pjreddie.com/media/files/mnist_train.csv](http://www.pjreddie.com/media/files/mnist_train.csv)
@@ -10,16 +8,27 @@ and testing data [http://www.pjreddie.com/media/files/mnist_test.csv](http://www
 
 Add both files to the `/data` folder or execute: `python download_mnist.py`
 
-## Benchmark configuration
-The benchmark is configurable setting:
-- number of epochs
-- list number of hidden nodes
-- list learning rate
+## Benchmark 
+To run the benchmark execute `python Benchmark.py`
 
+You can configure the benchmark by changing the following constants:
+- number of `epochs`
+- `hidden_nodes_list`
+- `learning_rate_list`
 
-
-## Benchmark
-Best Performance:  0.9783
- - learning rate:  0.05
+Best performance:  0.9783
  - epoch:  10
- - hidden nodes:  400
+ - hidden_nodes:  400
+ - learning_rate:  0.05
+
+## Tasks
+* Destroy single or a specific amount of nodes/weights to see how much it affects performance.
+
+* Visualize the weights between the layers
+
+* Send output signal reverse to get an image back from the input nodes
+
+* Make the number of hidden layers and their nodes configurable.
+
+## Notes
+* How does the number of hidden layers affect the performance?

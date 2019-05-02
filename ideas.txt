@@ -1,5 +1,0 @@
-1) Destroy single or a specific amount of nodes to see how much of that destruction performance affects.
-
-2) Visualize the weights between the layers
-
-3) Send output signal reverse to get an image back from the input nodes
