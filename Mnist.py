@@ -1,3 +1,4 @@
+import matplotlib.pyplot
 import numpy
 import FileReader
 from NeuralNetwork import NeuralNetwork
@@ -11,18 +12,6 @@ class Mnist:
         self.train_data_list = Mnist.get_train_data_list()
         self.test_data_list = Mnist.get_test_data_list()
         self.neural_network = NeuralNetwork(input_nodes, hidden_nodes, self.output_nodes, learning_rate)
-
-    @staticmethod
-    def get_train_data_list():
-        optional_train_file_name = "data/mnist_train.csv"
-        default_train_file_name = "data/mnist_train_100.csv"
-        return FileReader.read_optional_file_or_default(optional_train_file_name, default_train_file_name)
-
-    @staticmethod
-    def get_test_data_list():
-        optional_test_file_name = "data/mnist_test.csv"
-        default_test_file_name = "data/mnist_test_10.csv"
-        return FileReader.read_optional_file_or_default(optional_test_file_name, default_test_file_name)
 
     def train(self):
         for record in self.train_data_list:
@@ -65,3 +54,30 @@ class Mnist:
 
         # return performance
         return scorecard_array.sum() / scorecard_array.size
+
+    # run the network backwards, given a label, see what image it produces
+    def backward(self, label):
+        # create the output signals for this label
+        targets = numpy.zeros(self.output_nodes) + 0.01
+
+        # all_values[0] is the target label for this record
+        targets[label] = 0.99
+
+        # get image data
+        image_data = self.neural_network.backquery(targets)
+
+        # plot image data
+        matplotlib.pyplot.imshow(image_data.reshape(28, 28), cmap='Greys', interpolation='None')
+        matplotlib.pyplot.show()
+
+    @staticmethod
+    def get_train_data_list():
+        optional_train_file_name = "data/mnist_train.csv"
+        default_train_file_name = "data/mnist_train_100.csv"
+        return FileReader.read_optional_file_or_default(optional_train_file_name, default_train_file_name)
+
+    @staticmethod
+    def get_test_data_list():
+        optional_test_file_name = "data/mnist_test.csv"
+        default_test_file_name = "data/mnist_test_10.csv"
+        return FileReader.read_optional_file_or_default(optional_test_file_name, default_test_file_name)
