@@ -1,6 +1,8 @@
 # Neural Network
 Implementation of Tariq Rashid "Make Your Own Neural Network" using Python.
 
+[How does the neural network work in a nutshell](Nutshell.md "How does the neural network work in a nutshell")
+
 ## Mnist data
 To train the network you should download full train data 
 [http://www.pjreddie.com/media/files/mnist_train.csv](http://www.pjreddie.com/media/files/mnist_train.csv)
@@ -29,6 +31,8 @@ Best performance:  0.9783
 * Send output signal reverse to get an image back from the input nodes
 
 * Make the number of hidden layers and their nodes configurable.
+
+* Try different activation functions and see how they change the performance.
 
 ## Notes
 * How does the number of hidden layers affect the performance?
