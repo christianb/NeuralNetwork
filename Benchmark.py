@@ -47,7 +47,7 @@ for h_nodes in hidden_nodes_list:
             print()
 
         # backward image of a given label
-        # mnist.backward(4)
+        # mnist.backward(1)
 
 print("Best Performance: ", best_performance)
 print(" with learning rate: ", best_learning_rate)

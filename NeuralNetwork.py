@@ -65,30 +65,9 @@ class NeuralNetwork:
         # transpose the targets list to a vertical array
         final_outputs = numpy.array(targets_list, ndmin=2).T
 
-        # calculate the signal into the final output layer
-        final_inputs = self.inverse_activation_function(final_outputs)
+        hidden_outputs = self.signal_input(self.w_ho, final_outputs)
 
-        # calculate the signal out of the hidden layer
-        hidden_outputs = numpy.dot(self.w_ho.T, final_inputs)
-
-        # scale them back to 0.01 to .99
-        hidden_outputs -= numpy.min(hidden_outputs)
-        hidden_outputs /= numpy.max(hidden_outputs)
-        hidden_outputs *= 0.98
-        hidden_outputs += 0.01
-
-        # calculate the signal into the hidden layer
-        hidden_inputs = self.inverse_activation_function(hidden_outputs)
-
-        # calculate the signal out of the input layer
-        inputs = numpy.dot(self.w_ih.T, hidden_inputs)
-        # scale them back to 0.01 to .99
-        inputs -= numpy.min(inputs)
-        inputs /= numpy.max(inputs)
-        inputs *= 0.98
-        inputs += 0.01
-
-        return inputs
+        return self.signal_input(self.w_ih, hidden_outputs)
 
     # Calculates: w_ik * inputs
     # Applies the activation function to (w_ik * input)
@@ -96,10 +75,18 @@ class NeuralNetwork:
         signal_into_layer = numpy.dot(w_ik, inputs)  # calculate signals into layer: w_ik x inputs
         return self.activation_function(signal_into_layer)  # calculate the signals emerging from layer
 
-    # Applies the inverse activation function
+    # Applies the inverse activation function to w_ik and calculates the input from the output
     def signal_input(self, w_ik, outputs):
-        inputs = self.inverse_activation_function(outputs)
-        return numpy.dot(w_ik.T, inputs)
+        intermediate = self.inverse_activation_function(outputs)
+        input = numpy.dot(w_ik.T, intermediate)
+
+        # scale them back to 0.01 to .99
+        input -= numpy.min(input)
+        input /= numpy.max(input)
+        input *= 0.98
+        input += 0.01
+
+        return input
 
     def save_to_file(self):
         numpy.save("data/saved_w_ih.npy", self.w_ih)
