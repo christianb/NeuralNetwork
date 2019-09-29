@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  neural_network:
+    build: .
+    volumes:
+     - ${PATH_NEURAL_NETWORK}:/home/NeuralNetwork
+    stdin_open: true
+    tty: true
