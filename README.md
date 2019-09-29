@@ -11,8 +11,12 @@ You need to install the following modules:
 
 ### Mnist Data
 To train the network you should download full train data 
-[http://www.pjreddie.com/media/files/mnist_train.csv](http://www.pjreddie.com/media/files/mnist_train.csv)
-and testing data [http://www.pjreddie.com/media/files/mnist_test.csv](http://www.pjreddie.com/media/files/mnist_test.csv)
+[https://www.pjreddie.com/media/files/mnist_train.csv](https://www.pjreddie.com/media/files/mnist_train.csv)
+and testing data [https://www.pjreddie.com/media/files/mnist_test.csv](https://www.pjreddie.com/media/files/mnist_test.csv)
+
+`curl https://www.pjreddie.com/media/files/mnist_train.csv -o data/mnist_train.csv`
+
+`curl https://www.pjreddie.com/media/files/mnist_test.csv -o data/mnist_test.csv`
 
 Add both files to the `/data` folder or execute: `python download_mnist.py`
 
