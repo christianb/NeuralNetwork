@@ -4,10 +4,8 @@ Implementation of Tariq Rashid "Make Your Own Neural Network" using Python.
 [How does the neural network work in a nutshell](Nutshell.md "How does the neural network work in a nutshell")
 
 ## Setup
-### Python Modules
-You need to install the following modules:
-`pip install matplotlib`
-`pip install scipy`
+### Docker
+You can use the Dockerfile to start a container running Ubuntu with all required packages installed.
 
 ### Mnist Data
 To train the network you should download full train data 
